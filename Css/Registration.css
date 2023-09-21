@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #d7e1ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+:root {
+    --borderColor:#008bff;
+    --outlineColor: #ff7f50;
+}
+
+.container {
+    background-color:white ;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    box-shadow: 1px 1px 20px rgba(0,0,0,.3);
+}
+
+.register-box {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    /* border-right: 2px solid #666; */
+}
+
+.register-box h1 {
+    text-align: center;
+}
+
+.form-style {
+    padding: 10px;
+}
+
+.form-style .first {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-style .first input {
+    width: 49%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.form-style .email-style {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0 ;
+}
+
+.form-style .email-style input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.form-style .email-style i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -12px;
+    opacity: .3;
+}
+
+.form-style select:required:invalid {
+    color: #666;
+}
+
+
+.form-style option[value=""][disabled] {
+    display: none;
+}
+
+.form-style option {
+    color :#000;
+}
+
+.form-style select {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    padding: 10px 10px 10px 5px ;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.form-style .phone-style {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0 ;
+}
+
+.form-style .phone-style input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.form-style .phone-style i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -12px;
+    opacity: .3;
+}
+
+.form-style .pass-style {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0 ;
+}
+
+.form-style .pass-style input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.form-style .pass-style i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -12px;
+    opacity: .3;
+}
+
+input[type="password"]:focus + i {
+    display: none;
+}
+
+.form-style .c-pass-style {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0 ;
+}
+
+.form-style .c-pass-style input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+}
+
+.form-style .c-pass-style i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -12px;
+    opacity: .3;
+}
+
+.form-style .submit {
+    width: 100%;
+    position: relative;
+    margin: 10px 0 ;
+    text-align: center;
+}
+
+.form-style .submit input {
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: var(--borderColor);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.form-style .submit input:hover {
+    background-color: transparent;
+    border:2px solid var(--outlineColor);
+    color: var(--outlineColor);
+}
+
+.container .logo {
+    /* background-color: gold; */
+    width: 50%;
+    height: 100%;
+}
+.container .logo .head {
+    text-align: right;
+    padding: 10px;
+}
+
+.container .logo .head i {
+    font-size: 48px;
+    color: var(--borderColor);
+}
+.container .logo .head i:hover {
+    color: var(--outlineColor);
+}
+
+.container .logo .img {
+    /* background-color: red; */
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    background-image: url(../images/form-img.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+input[type="text"]:focus{
+    border: 2px solid var(--outlineColor);
+    outline: none;
+}
+input[type="password"]:focus{
+    border: 2px solid var(--outlineColor);
+    outline: none;
+}
+input[type="email"]:focus{
+    border: 2px solid var(--outlineColor);
+    outline: none;
+}
+
+select:focus{
+    outline: none;
+    border-color: var(--outlineColor);
+}

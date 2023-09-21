@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #d7e1ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+:root {
+    --borderColor:#008bff;
+    --outlineColor: #ff7f50;
+}
+
+.container {
+    overflow: hidden;
+    background-color:white ;
+    width: 70%;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    box-shadow: 1px 1px 20px rgba(0,0,0,.3);
+
+}
+
+.login-box {
+    background-color: white;
+    width: 40%;
+    height: 100%;
+    padding: 20px;
+}
+
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-style {
+    padding: 10px;
+}
+
+.form-style .inputs input {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid var(--borderColor);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.form-style .checkbox {
+    padding: 10px;
+}
+
+.form-style .checkbox label {
+    font-size: 20px ;
+}
+
+.form-style .submit {
+    text-align: center;
+}
+
+.form-style .submit input {
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: var(--borderColor);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    margin: 10px 0;
+}
+
+.form-style .submit input:hover {
+    background-color: transparent;
+    border:2px solid var(--outlineColor);
+    color: var(--outlineColor);
+}
+
+input[type="password"]:focus{
+    border: 2px solid var(--outlineColor);
+    outline: none;
+}
+input[type="email"]:focus{
+    border: 2px solid var(--outlineColor);
+    outline: none;
+}
+
+
+.container .logo {
+    width: 60%;
+    height: 100%;
+}
+
+.container .logo .back {
+    text-align: right;
+    padding: 10px;
+}
+
+.container .logo .back i {
+    font-size: 48px;
+    color: var(--borderColor);
+}
+.container .logo .back i:hover {
+    color: var(--outlineColor);
+}
+
+.container .logo .img {
+    width: 100%;
+    height: 300px;
+    background-image: url(../images/form-img.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container .logo .img-admin  {
+    background-color: red;
+    width: 100%;
+    height: 80%;
+}
+
+.container .logo .img-admin img {
+    width: 100%;
+    height: 100%;
+}
