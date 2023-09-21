@@ -2,6 +2,7 @@
 session_start();
 include_once '../database/Validation.php';
 include_once '../models/Admin.php';
+// var_dump($_POST);
 if ($_POST) {  
     //Validation On Firstname
     $FirstNameValidation = new Validation('first_name', $_POST['first_name']);
@@ -61,13 +62,18 @@ if ($_POST) {
     // end of validation
 
     if(empty($_SESSION['update-errors'])){
-        echo "<pre>";
-       print_r($_POST);
-       echo "</pre>";
+        // $_SESSION['newAdminData']=$_POST;
+        // $adminObj = new Admin();
+        if($adminObj->Update()) {
+            $res = array("res" => "success");
+        }else {
+            $res = array("res" => "qsuccess");
+        }
     }else{  
-        // echo "asd";
-        header("loaction:../../Admin-html/profile-admin.php");
+        $res = array("res" => "invalid");
     }
 } else {
-    header("location:../Errors/404.php");
+    $res = array("res" => "invalidd");
 }
+
+echo json_encode($res);
