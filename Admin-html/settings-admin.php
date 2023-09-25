@@ -1,8 +1,7 @@
 <?php
 session_start();
-// include_once '../app/database/Validation.php';
-// include_once '../app/models/Admin.php';
-
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
