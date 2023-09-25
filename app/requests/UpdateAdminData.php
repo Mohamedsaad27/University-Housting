@@ -75,16 +75,16 @@ if ($_POST) {
         $admin->setPhone($_POST['phone']);
         $result = $admin->update();
         $_SESSION['admin']->First_Name = $_POST['first_name'];
-        $_SESSION['admin']->Lirst_name = $_POST['last_name'];
+        $_SESSION['admin']->Last_name = $_POST['last_name'];
         $_SESSION['admin']->Grand_Name = $_POST['grand_name'];
         $_SESSION['admin']->Gender = $_POST['gender'];
         $_SESSION['admin']->Phone = $_POST['phone'];
-      if($result){
-          $_SESSION['update-success'] =  "<div class='alert alert-success'> Updated Successfully </div>";
-      }else{
-          $_SESSION['update-failed'] =  "<div class='alert alert-danger'> Something Went Wrong</div>";
+        if($result){
+            $_SESSION['update-success'] =  "<div class='alert alert-success'> Updated Successfully </div>";
+        }else{
+            $_SESSION['update-failed'] =  "<div class='alert alert-danger'> Something Went Wrong</div>";
 
-      }
+        }
         header("Location:../../Admin-html/profile-admin.php");
     }else{
         #redirect To Profile-Admin Page and Display Errors

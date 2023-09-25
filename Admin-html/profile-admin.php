@@ -163,8 +163,8 @@ if(!isset($_SESSION['admin']))
                         <div class="info">
                             <label>الجنس</label><br>
                             <select class="gender" name="gender">
-                                <option <?= $_SESSION['admin']->Gender == 'Male' ? 'selected' : '' ?> value="m">Male</option>
-                                <option <?= $_SESSION['admin']->Gender == 'Female' ? 'selected' : '' ?> value="f">Female</option>
+                                <option <?= $_SESSION['admin']->Gender == 'Male' ? 'selected' : '' ?> value="Male">Male</option>
+                                <option <?= $_SESSION['admin']->Gender == 'Female' ? 'selected' : '' ?> value="Female">Female</option>
                             </select>
 
                         </div>

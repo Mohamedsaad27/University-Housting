@@ -22,7 +22,7 @@ class Admin extends connection implements crud {
     }
     public function Update(){
         $query = "UPDATE admins SET First_Name = '$this->first_name',Last_name ='$this->last_name',Grand_Name  = '$this->grand_name',
-        phone = '$this->phone' , Gender = '$this->gender'  WHERE Email = '$this->email' ";
+        phone = '$this->phone' , Gender = '$this->gender' , UpdatedAt = NOW()  WHERE Email = '$this->email' ";
         return $this->runDML($query);
     }
     public function Delete(){
@@ -134,6 +134,11 @@ class Admin extends connection implements crud {
     public function Login(){
         $query = "SELECT * FROM admins WHERE  `Email` = '$this->email' AND `Password` = '$this->password' ";
         return $this->runDQL($query);
+    }
+
+    public function UpdatePassword(){
+        $query = "UPDATE admins SET Password = '$this->password' , UpdatedAt = NOW()  WHERE Email = '$this->email' ";
+        return $this->runDML($query);
     }
 
     /**

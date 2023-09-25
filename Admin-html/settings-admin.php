@@ -1,3 +1,9 @@
+<?php
+session_start();
+// include_once '../app/database/Validation.php';
+// include_once '../app/models/Admin.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,40 +96,71 @@
             </div>
             <div class="content">
                 <h3>تغيير كلمة السر</h3>
-                <form action="">
+                <form action="" method="post" id="UpdatePasswordFRM">
                     <div class="last-update">
                         <div class="pass">
                             <label>اخر تحديث :</label>
-                            <input type="text" readonly>
+                            <input type="text" value="<?= $_SESSION['admin']->UpdatedAt?>" readonly>
                         </div>
                     </div>
 
                     <div class="info-wrap">
                         <div class="info">
                             <label>كلمه السر الحاليه</label><br>
-                            <input type="password">
+                            <input type="password" name="oldPassword">
+                            <?php
+                                        if (!empty($_SESSION['UpdatePassworderrors']['oldPassword'])) {
+                                            foreach ($_SESSION['UpdatePassworderrors']['oldPassword'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
                         </div>
 
                         <div class="info">
                             <label>كلمه السر الجديده</label><br>
-                            <input type="password">
+                            <input type="password" name="NewPassword">
+                            <?php
+                                        if (!empty($_SESSION['UpdatePassworderrors']['NewPassword'])) {
+                                            foreach ($_SESSION['UpdatePassworderrors']['NewPassword'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
                         </div>
 
                         <div class="info">
                             <label>تأكيد كلمه السر </label><br>
-                            <input type="password">
+                            <input type="password" name="NewPasswordConfirm">
+                            <?php
+                                        if (!empty($_SESSION['UpdatePassworderrors']['NewPasswordConfirm'])) {
+                                            foreach ($_SESSION['UpdatePassworderrors']['NewPasswordConfirm'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
                         </div>
                     </div>
                     <div class="button">
-                        <input type="submit" value="الغاء" class="canel">
+                        <?php
+                                        if (!empty($_SESSION['UpdatePassworderrors']['total'])) {
+                                            foreach ($_SESSION['UpdatePassworderrors']['total'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
+                        <input type="button" value="الغاء" class="canel">
                         <input type="submit" value="تحديث">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    <script src="../Js/jquery.js"></script>
     <script src="../Js/index.js"></script>
 </body>
 
 </html>
+<?php 
+unset($_SESSION['UpdatePassworderrors']);
+?>
