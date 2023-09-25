@@ -9,6 +9,8 @@ class Admin extends connection implements crud {
     private $last_name;
     private $grand_name;
     private $email;
+    private $gender;
+    private $phone;
     private $password;
     private $created_at;
 
@@ -19,15 +21,34 @@ class Admin extends connection implements crud {
         
     }
     public function Update(){
-        // $query = "UPDATE `admins` SET `First_Name`='".$_SESSION['newAdminData']->first_name."',`Last_name`='".$_SESSION['newAdminData']->last_name."',
-        // `Grand_Name`='".$_SESSION['newAdminData']->grand_name."',`Phone`='".$_SESSION['newAdminData']->phone."',`UpdatedAt`='Now()' WHERE ID =".$_SESSION['admin']->ID;
-        // return $this->runDML($query);
+        $query = "UPDATE admins SET First_Name = '$this->first_name',Last_name ='$this->last_name',Grand_Name  = '$this->grand_name',
+        phone = '$this->phone' , Gender = '$this->gender'  WHERE Email = '$this->email' ";
+        return $this->runDML($query);
     }
     public function Delete(){
         
     }
+    public function getAdminByEmail(){
+        $query = "SELECT * FROM admins WHERE email = '$this->email' ";
+        return $this->runDQL($query);
+    }
 
-    
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
 
     /**
      * Get the value of id
@@ -174,4 +195,25 @@ class Admin extends connection implements crud {
 
         return $this;
     }
+
+    /**
+     * Get the value of phone
+     */ 
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @return  self
+     */ 
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
 }

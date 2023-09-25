@@ -8,10 +8,11 @@ if(!isset($_SESSION['admin']))
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>profile</title>
+    <title>Admin-Profile</title>
     <link rel="stylesheet" href="../Css/profile.css">
     <link rel="stylesheet" href="Css/bootstrap.min.css" />
     <link rel="stylesheet" href="Css/all.min.css" />
@@ -99,9 +100,15 @@ if(!isset($_SESSION['admin']))
         <div class="main-content">
             <div class="page-content-header">
                 <h1>ملفي الشخصي</h1>
+                <?php
+                if(isset($_SESSION['update-success'])){
+                    echo $_SESSION['update-success'];
+
+                }
+                ?>
             </div>
             <div class="content">
-                <form method="post" id="UpdateFRM">
+                <form method="post" id="UpdateFRM" action="../app/requests/UpdateAdminData.php">
                     <div class="read-only-info">
                         <div class="row1">
                             <label>اخر تحديث</label><br>
@@ -183,15 +190,15 @@ if(!isset($_SESSION['admin']))
                     </div>
 
                     <div class="button">
-                        <input type="submit" value="تعديل" id="Update" onclick="UpdateData()">
+                        <input type="submit" value="تعديل" id="Update" >
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="../Js/jquery.js"></script>
+<!--    <script src="../Js/jquery.js"></script>-->
     <script src="../Js/bootstrap.bundle.min.js"></script>
-    <script src="../Js/all.min.js"></script>
+<!--    <script src="../Js/all.min.js"></script>-->
     <script src="../Js/index.js"></script>
 </body>
 
@@ -199,4 +206,6 @@ if(!isset($_SESSION['admin']))
 
 <?php
 unset($_SESSION['update-errors']);
+unset($_SESSION['update-success']);
+unset($_SESSION['update-failed']);
 ?>

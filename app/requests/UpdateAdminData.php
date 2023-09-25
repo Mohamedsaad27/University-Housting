@@ -31,7 +31,7 @@ if ($_POST) {
     } else {
         $_SESSION['update-errors']['last_name']['required'] = $LastNameRequiredResult;
     }
-    //Validation On grandtname
+    //Validation On grand name
 
     $GrandNameValidation = new Validation('grand_name', $_POST['grand_name']);
     $GrandNameRequiredResult = $GrandNameValidation->Required();
@@ -46,7 +46,7 @@ if ($_POST) {
     //Validation on phone 
     $phoneValidation = new Validation('phone', $_POST['phone']);
     $phoneRequiredResult = $phoneValidation->Required();
-    $phonePattern = "/^01[0-2]{1}[0-9]{8}$/";
+    $phonePattern = '/^01[1-268]\d{8}$/';
     if (empty($phoneRequiredResult)) {
         $phoneRegexResult = $phoneValidation->RegExp($phonePattern);
         if (empty($phoneRegexResult)) {
@@ -62,18 +62,35 @@ if ($_POST) {
     // end of validation
 
     if(empty($_SESSION['update-errors'])){
-        // $_SESSION['newAdminData']=$_POST;
-        // $adminObj = new Admin();
-        if($adminObj->Update()) {
-            $res = array("res" => "success");
-        }else {
-            $res = array("res" => "qsuccess");
-        }
-    }else{  
-        $res = array("res" => "invalid");
+        #update User Data
+//        var_dump($_POST);die;
+        $admin = new Admin();
+        $admin->setEmail($_SESSION['admin']->Email);
+        $adminByEmail = $admin->getAdminByEmail();
+        $adminObject = $adminByEmail->fetch_object();
+        $admin->setFirst_name($_POST['first_name']);
+        $admin->setLast_name($_POST['last_name']);
+        $admin->setGrand_name($_POST['grand_name']);
+        $admin->setGender($_POST['gender']);
+        $admin->setPhone($_POST['phone']);
+        $result = $admin->update();
+        $_SESSION['admin']->First_Name = $_POST['first_name'];
+        $_SESSION['admin']->Lirst_name = $_POST['last_name'];
+        $_SESSION['admin']->Grand_Name = $_POST['grand_name'];
+        $_SESSION['admin']->Gender = $_POST['gender'];
+        $_SESSION['admin']->Phone = $_POST['phone'];
+      if($result){
+          $_SESSION['update-success'] =  "<div class='alert alert-success'> Updated Successfully </div>";
+      }else{
+          $_SESSION['update-failed'] =  "<div class='alert alert-danger'> Something Went Wrong</div>";
+
+      }
+        header("Location:../../Admin-html/profile-admin.php");
+    }else{
+        #redirect To Profile-Admin Page and Display Errors
+        header("Location:../../Admin-html/profile-admin.php");
+
     }
 } else {
-    $res = array("res" => "invalidd");
+    header("Location:../Errors/404.php");
 }
-
-echo json_encode($res);
