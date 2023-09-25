@@ -19,7 +19,9 @@ class Admin extends connection implements crud {
         
     }
     public function Update(){
-        
+        // $query = "UPDATE `admins` SET `First_Name`='".$_SESSION['newAdminData']->first_name."',`Last_name`='".$_SESSION['newAdminData']->last_name."',
+        // `Grand_Name`='".$_SESSION['newAdminData']->grand_name."',`Phone`='".$_SESSION['newAdminData']->phone."',`UpdatedAt`='Now()' WHERE ID =".$_SESSION['admin']->ID;
+        // return $this->runDML($query);
     }
     public function Delete(){
         

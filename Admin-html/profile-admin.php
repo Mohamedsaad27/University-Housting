@@ -1,7 +1,8 @@
 <?php
 session_start();
 // var_dump($_SESSION['admin']);die;
-
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +101,7 @@ session_start();
                 <h1>ملفي الشخصي</h1>
             </div>
             <div class="content">
-                <form action="../app/requests/UpdateAdminData.php" method="post">
+                <form method="post" id="UpdateFRM">
                     <div class="read-only-info">
                         <div class="row1">
                             <label>اخر تحديث</label><br>
@@ -182,14 +183,15 @@ session_start();
                     </div>
 
                     <div class="button">
-                        <input type="submit" value="تحديث">
+                        <input type="submit" value="تعديل" id="Update" onclick="UpdateData()">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="Js/bootstrap.bundle.min.js"></script>
-    <script src="Js/all.min.js"></script>
+    <script src="../Js/jquery.js"></script>
+    <script src="../Js/bootstrap.bundle.min.js"></script>
+    <script src="../Js/all.min.js"></script>
     <script src="../Js/index.js"></script>
 </body>
 
