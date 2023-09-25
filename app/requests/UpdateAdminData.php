@@ -45,7 +45,7 @@ if ($_POST) {
     //Validation on phone 
     $phoneValidation = new Validation('phone', $_POST['phone']);
     $phoneRequiredResult = $phoneValidation->Required();
-    $phonePattern = "/^01[0-2,5,9]{1}[0-9]{8}$/";
+    $phonePattern = "/^01[0-2]{1}[0-9]{8}$/";
     if (empty($phoneRequiredResult)) {
         $phoneRegexResult = $phoneValidation->RegExp($phonePattern);
         if (empty($phoneRegexResult)) {
