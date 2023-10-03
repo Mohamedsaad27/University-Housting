@@ -39,7 +39,7 @@ class Admin extends connection implements crud {
     }
 
     /**
-     * Set the value of id
+     * Set the value of iD
      *
      * @return  self
      */
