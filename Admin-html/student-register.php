@@ -1,3 +1,15 @@
+<?php 
+session_start();
+include_once "../app/models/Booking.php";
+
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
+
+$BookingtObj = new Booking();
+$BookingData = $BookingtObj->getAllBookings()->fetch_all(MYSQLI_ASSOC);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,42 +156,27 @@
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                         </tr>
+                        </tr>
+                        <?PHP 
+                        if($BookingData){
+                            foreach ($BookingData as $key => $Booking) {
+                                ?>
                         <tr>
-                            <td>1</td>
-                            <td>20</td>
-                            <td>abdo ahmed </td>
-                            <td>350</td>
-                            <td>1</td>
-                            <td>1-9-2023</td>
-                            <td>7554457821</td>
+                            <td><?php echo $Booking['ID'] ?></td>
+                            <td><?php echo $Booking['Student_Id'] ?></td>
+                            <td><?php echo $Booking['Name'] ?></td>
+                            <td><?php echo $Booking['Room_Id'] ?></td>
+                            <td><?php echo $Booking['NumberOfBeds'] ?></td>
+                            <td><?php echo $Booking['StartDate'] ?></td>
+                            <td><?php echo $Booking['Phone'] ?></td>
                             <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-expand scale"></i>
+                            <i class="fa fa-expand scale"></i>
                             </i></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>50</td>
-                            <td>any</td>
-                            <td>200</td>
-                            <td>2</td>
-                            <td>20-8-2023</td>
-                            <td>451541245</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-expand scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>35</td>
-                            <td>bellingham</td>
-                            <td>42</td>
-                            <td>0</td>
-                            <td>27-8-2023</td>
-                            <td>5444544454</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-expand scale"></i>
-                            </i></td>
-                        </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                     </table>
                     <div class="box-footer">
                         <div class="pages">

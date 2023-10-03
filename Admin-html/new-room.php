@@ -100,30 +100,42 @@ if(!isset($_SESSION['admin']))
                 <h1>اضافة غرفة</h1>
             </div>
             <div class="content">
-              
-                <form action="get">
+                <form method="post" id="NewRoomFRM">
                     <div class="info-wrap">
                         <div class="info">
                             <label for="">رقم الغرفة</label><br>
-                            <input type="text" placeholder="اكتب رقم الغرفة" required>
+                            <input type="text" placeholder="اكتب رقم الغرفة" required name="roomNumber">
                         </div>
                         <div class="info">
                             <label for="">المقاعد في الغرفة</label><br>
-                            <input type="number" placeholder="عدد المقاعد في الغرفة" required>
+                            <input type="number" placeholder="عدد المقاعد في الغرفة" required name="numberOfBeds">
                         </div>
                         <div class="info">
                             <label for="">الرسوم الشهرية</label><br>
-                            <input type="number" placeholder="الرسوم الشهرية" required>
+                            <input type="number" placeholder="الرسوم الشهرية" required name="Price">
                         </div>
                         <div class="info">
                             <label for=""> حالة الغرفة </label><br>
-                            <input type="text" placeholder=" حالة الغرفة " required>
+                            <select name="AvailabilityStatus" id="">
+                                <option value="Available">متاحة</option>
+                                <option value="Occupied">مشغولة</option>
+                            </select>
                         </div>
                         <div class="info">
-                            <label for="">حالة الطعام </label><br>
-                            <input type="text" placeholder="حالة الطعام " required>
+                            <label for="">حالة الطعام</label><br>
+                            <select name="FoodStatus" id="">
+                                <option value="Included">شامل</option>
+                                <option value="Not Included">غير شامل</option>
+                            </select>
                         </div>
                     </div>
+                    <?php
+                                        if (!empty($_SESSION['errors'])) {
+                                            foreach ($_SESSION['errors']as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
                     <div class="button">
                         <input type="reset" value="حذف" class="dlt">
                         <input type="submit" value="اضافة">
@@ -134,7 +146,11 @@ if(!isset($_SESSION['admin']))
         </div>
     </div>
 
+    <script src="../Js/jquery.js"></script>
     <script src="../Js/index.js"></script>
 </body>
 
 </html>
+<?php
+unset($_SESSION['errors']);
+?>

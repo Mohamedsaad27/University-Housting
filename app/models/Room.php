@@ -13,6 +13,9 @@ class Room extends connection implements crud {
     private $creted_at;
     
     public function Create(){
+        $query = "INSERT INTO `rooms`(`Room_Id`, `NumberOfBeds`, `Price`, `AvailabilityStatus`, `FoodStatus`) 
+        VALUES ('$this->Room_Id','$this->NumberOfBeds','$this->Price','$this->AvailabilityStatus','$this->FoodStatus')";
+        return $this->runDML($query);
     }
     public function Read(){   
     }

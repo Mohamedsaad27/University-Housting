@@ -66,3 +66,33 @@ $(document).ready(function () {
         });
     });
 });
+
+//New Room Function
+$(document).ready(function () {                
+    $('#NewRoomFRM').submit(function (event) {
+        event.preventDefault();
+        // alert("test");
+        var formData = $(this).serialize();
+        $.ajax({
+            url: '../app/requests/newRoom.php',
+            method: 'POST',
+            data: formData,
+            success: function (response) {      
+                response = JSON.parse(response);                
+                if (response.res == "invalid") {
+                    window.location.href = window.location.href;
+                }
+                else if (response.res == "success") {
+                    alert("تم الاضافة");
+                    window.location.href = window.location.href;
+                }
+                else if (response.res == "invalidd")
+                    alert("مش عارف");
+            },
+            error: function (xhr, status, error) {                       
+                alert('Your form was not sent successfully.');
+                console.error(error);
+            }
+        });
+    });
+});

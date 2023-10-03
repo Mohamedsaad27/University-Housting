@@ -169,8 +169,8 @@ $facultyNumber = $facultyObj->getAllFaculties()->num_rows;
                             <i class="fa fa-sort"></i>
                         </td>
                         <td style="width: 20%;" nowrap>
-                           <span>وقت التسجيل</span>
-                           <i class="fa fa-sort"></i>
+                            <span>وقت التسجيل</span>
+                            <i class="fa fa-sort"></i>
                         </td>
                     </tr>
                     </tr>
