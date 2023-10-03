@@ -1,4 +1,5 @@
 <?php
+include_once "../app/middleware/auth.php";
 session_start();
 // var_dump($_SESSION['admin']);die;
 if(!isset($_SESSION['admin']))
@@ -14,8 +15,8 @@ if(!isset($_SESSION['admin']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Profile</title>
     <link rel="stylesheet" href="../Css/profile.css">
-    <link rel="stylesheet" href="Css/bootstrap.min.css" />
-    <link rel="stylesheet" href="Css/all.min.css" />
+<!--    <link rel="stylesheet" href="../Css/bootstrap.min.css" />-->
+<!--    <link rel="stylesheet" href="../Css/all.min.css" />-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet" />

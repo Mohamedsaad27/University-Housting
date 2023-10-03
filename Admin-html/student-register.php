@@ -1,4 +1,5 @@
 <?php 
+include_once "../app/middleware/auth.php";
 session_start();
 include_once "../app/models/Booking.php";
 
@@ -66,8 +67,11 @@ $BookingData = $BookingtObj->getAllBookings()->fetch_all(MYSQLI_ASSOC);
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="../images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
-                                </div>
+                                    <h3 id="user-name">
+                                        <?=
+                                        $_SESSION['admin']->First_Name .' '.$_SESSION['admin']->Last_name;
+                                        ?>
+                                    </h3>                                </div>
                                 <hr>
                                 <a href="profile-admin.php" class="sub-menu-link">
                                     <img src="../images/profile.png">

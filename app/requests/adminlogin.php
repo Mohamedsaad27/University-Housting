@@ -3,9 +3,7 @@ session_start();
 include_once '../database/Validation.php';
 include_once '../models/Admin.php';
 if ($_POST) {
-
-    // Validation  On Email 
-
+    // Validation  On Email
     $emailValidation = new Validation('email', $_POST['email']);
     $emailRequiredResult = $emailValidation->Required();
     if (empty($emailRequiredResult)) {

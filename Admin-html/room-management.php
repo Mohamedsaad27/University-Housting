@@ -1,4 +1,5 @@
 <?php
+include_once "../app/middleware/auth.php";
 include_once '../app/models/Room.php';
 session_start();
 
