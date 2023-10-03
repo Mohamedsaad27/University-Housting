@@ -121,7 +121,7 @@ if(!isset($_SESSION['admin']))
                 </div>
                 <div class="item">
                     <span><i class="fa fa-graduation-cap"></i></span>
-                    <h4>المراحل الدراسية</h4>
+                    <h4>عدد الكليات المسجلة </h4>
                     <hr>
                     <p>3</p>
                 </div>
