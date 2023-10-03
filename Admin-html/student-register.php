@@ -169,9 +169,10 @@ $BookingData = $BookingtObj->getAllBookings()->fetch_all(MYSQLI_ASSOC);
                             <td><?php echo $Booking['NumberOfBeds'] ?></td>
                             <td><?php echo $Booking['StartDate'] ?></td>
                             <td><?php echo $Booking['Phone'] ?></td>
-                            <td><i class="fa fa-times-circle-o dlt">
+                            <td>
+                            <i class="fa fa-times-circle-o dlt" src="#"></i>
                             <i class="fa fa-expand scale"></i>
-                            </i></td>
+                            </td>
                         </tr>
                                 <?php
                             }
@@ -197,6 +198,7 @@ $BookingData = $BookingtObj->getAllBookings()->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
 
+    <script src="../Js/jquery.js"></script>
     <script src="../Js/index.js"></script>
 </body>
 
