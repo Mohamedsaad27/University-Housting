@@ -1,3 +1,11 @@
+<?php
+include_once '../app/models/Student.php';
+session_start();
+
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,8 +62,11 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="../images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
-                                </div>
+                                    <h3 id="user-name">
+                                        <?=
+                                        $_SESSION['admin']->First_Name .' '.$_SESSION['admin']->Last_name;
+                                        ?>
+                                    </h3>                                </div>
                                 <hr>
                                 <a href="profile-admin.php" class="sub-menu-link">
                                     <img src="../images/profile.png">
@@ -98,15 +109,19 @@
                         </div>
                         <div class="info">
                             <label for="">المقاعد في الغرفة</label><br>
-                            <select name="" id="" required >
-                                <option value="" selected disabled>اختار</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
+                            <input type="number" placeholder="عدد المقاعد في الغرفة" required>
                         </div>
                         <div class="info">
                             <label for="">الرسوم الشهرية</label><br>
                             <input type="number" placeholder="الرسوم الشهرية" required>
+                        </div>
+                        <div class="info">
+                            <label for=""> حالة الغرفة </label><br>
+                            <input type="text" placeholder=" حالة الغرفة " required>
+                        </div>
+                        <div class="info">
+                            <label for="">حالة الطعام </label><br>
+                            <input type="text" placeholder="حالة الطعام " required>
                         </div>
                     </div>
                     <div class="button">

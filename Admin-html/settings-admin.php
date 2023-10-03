@@ -59,7 +59,11 @@ if(!isset($_SESSION['admin']))
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="../images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name">
+                                        <?=
+                                        $_SESSION['admin']->First_Name .' '.$_SESSION['admin']->Last_name;
+                                        ?>
+                                    </h3>
                                 </div>
                                 <hr>
                                 <a href="profile-admin.php" class="sub-menu-link">
@@ -78,7 +82,7 @@ if(!isset($_SESSION['admin']))
                                             <span>&gt;</span>
                                         </a>
                                         <a href="../app/requests/adminLogout.php" class="sub-menu-link">
-                                            <img src="../images/logout.png ">
+                                            <img src="../images/logout.png " >
                                             <p>تسجيل الخروج</p>
                                             <span>&gt;</span>
                                         </a>
