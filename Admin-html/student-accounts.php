@@ -1,3 +1,14 @@
+<?php 
+include_once '../app/models/Student.php';
+session_start();
+
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
+
+$studentObject = new Student();
+$result = $studentObject->getStudentsData();
+$studentsData = $result->fetch_all(MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +66,11 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="../images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name">
+                                        <?=
+                                        $_SESSION['admin']->First_Name .' '.$_SESSION['admin']->Last_name;
+                                        ?>
+                                    </h3>
                                 </div>
                                 <hr>
                                 <a href="profile-admin.php" class="sub-menu-link">
@@ -140,24 +155,24 @@
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                         </tr>
+                        <?PHP 
+                        if($studentsData){
+                            foreach ($studentsData as $key => $student) {
+                                ?>
                         <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>abdo ahmed </td>
-                            <td>رجولة</td>
-                            <td>01017082519</td>
-                            <td>abdo@gmail.com</td>
+                            <td><?php echo $student['ID'] ?></td>
+                            <td><?php echo $student['Student_Id'] ?></td>
+                            <td><?php echo $student['Name'] ?></td>
+                            <td><?php echo   ($student['Gender'] ) == 'M' ? 'Male' : 'Female' ?></td>
+                            <td><?php echo $student['Phone'] ?></td>
+                            <td><?php echo $student['Email'] ?></td>
                             <td><i class="fa fa-times-circle-o dlt"></i></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>any</td>
-                            <td>حرمه</td>
-                            <td>########</td>
-                            <td>any@gmail.com</td>
-                            <td><i class="fa fa-times-circle-o dlt"></i></td>
-                        </tr>
+                                <?php
+                            }
+                        }
+                        ?>
+
                     </table>
                     <div class="box-footer">
                         <div class="pages">

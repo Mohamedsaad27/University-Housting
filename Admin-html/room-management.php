@@ -1,3 +1,16 @@
+<?php
+include_once '../app/models/Room.php';
+session_start();
+
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
+
+
+$roomObject = new Room();
+$result = $roomObject->getRoomsData();
+$roomData = $result->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +67,11 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="../images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name">
+                                        <?=
+                                        $_SESSION['admin']->First_Name .' '.$_SESSION['admin']->Last_name;
+                                        ?>
+                                    </h3>
                                 </div>
                                 <hr>
                                 <a href="profile-admin.php" class="sub-menu-link">
@@ -130,6 +147,10 @@
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                             <td>
+                                <span> حالة الطعام </span>
+                                <span><i class="fa fa-sort"></i></span>
+                            </td>
+                            <td>
                                 <span>تاريخ اضافة الغرفة</span>
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
@@ -138,87 +159,26 @@
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>200</td>
-                            <td>5</td>
-                            <td>350</td>
-                            <td>1-9-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>102</td>
-                            <td>3</td>
-                            <td>200</td>
-                            <td>20-8-2023</td>
-                            
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>98</td>
-                            <td>4</td>
-                            <td>42</td>
-                            <td>27-8-2023</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
+                        <?php
+                        if($roomData){
+                            foreach ($roomData as $key=>$room){
+                                ?>
+                                <tr>
+                                    <td><?php echo $room['ID'] ?></td>
+                                    <td><?php echo $room['Room_Id'] ?></td>
+                                    <td><?php echo $room['NumberOfBeds'] ?></td>
+                                    <td><?php echo $room['Price'] ?></td>
+                                    <td><?php echo $room['FoodStatus'] ?></td>
+                                    <td><?php echo $room['created_at'] ?></td>
+                                    <td><i class="fa fa-times-circle-o dlt">
+                                            <i class="fa fa-edit scale"></i>
+                                        </i></td>
+                                </tr>
+                        <?php
+                            }
+                        }
+                        ?>
+
                     </table>
                     <div class="box-footer">
                         <div class="pages">
