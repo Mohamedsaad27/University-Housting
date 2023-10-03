@@ -1,3 +1,13 @@
+<?php
+include_once '../app/models/Faculty.php';
+session_start();
+
+if(!isset($_SESSION['admin']))
+    header("Location:../admin-login.php");
+$facultyObj = new Faculty();
+$facultiesData = $facultyObj->getAllFaculties()->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,17 +126,13 @@
                             <td>
                                 <span>التسلسل</span>
                                 <span><i class="fa fa-sort"></i></span>
+                            <td>
+                                <span>اسم الجامعة</span>
+                                <span><i class="fa fa-sort"></i></span>
+                            </td>
                             </td>
                             <td>
                                 <span>المرحلة الدراسية</span>
-                                <span><i class="fa fa-sort"></i></span>
-                            </td>
-                            <td>
-                                <span>مدة المرحلة الدراسية</span>
-                                <span><i class="fa fa-sort"></i></span>
-                            </td>
-                            <td>
-                                <span>اسم الجامعة</span>
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                             <td>
@@ -134,78 +140,22 @@
                                 <span><i class="fa fa-sort"></i></span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>هندسة البرمجيات</td>
-                            <td>4</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>هندسة البرمجيات</td>
-                            <td>4</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>طب اسنان</td>
-                            <td>5</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>صيدله</td>
-                            <td>5</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>فيزياء</td>
-                            <td>4</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>تربية رياضية</td>
-                            <td>4</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>تربية فنية</td>
-                            <td>4</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>طب بشري</td>
-                            <td>6</td>
-                            <td>جامعة جنوب الوادي</td>
-                            <td><i class="fa fa-times-circle-o dlt">
-                                <i class="fa fa-edit scale"></i>
-                            </i></td>
-                        </tr>
+                        <?php
+                        if($facultiesData){
+                            foreach ($facultiesData as $key=>$faculty){
+                                ?>
+                                <tr>
+                                    <td><?php echo $faculty['ID'] ?></td>
+                                    <td>جنوب الوادي</td>
+                                    <td><?php echo $faculty['Name'] ?></td>
+                                    <td><i class="fa fa-times-circle-o dlt">
+                                    <i class="fa fa-edit scale"></i>
+                                    </i></td>
+                                </tr>
+                        <?php
+                            }
+                        }
+                        ?>
                     </table>
                     <div class="box-footer">
                         <div class="pages">
