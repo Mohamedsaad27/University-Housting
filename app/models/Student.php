@@ -233,4 +233,9 @@ class Student extends connection implements crud{
     LEFT JOIN phones ON students.ID = phones.StudentId";
     return $this->runDQL($query);
     }
+
+    public function getAllStudents(){
+        $query = "SELECT * FROM `students`";
+        return $this->runDQL($query);
+    }
 }

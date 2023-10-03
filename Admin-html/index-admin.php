@@ -1,9 +1,22 @@
 <?php 
-
 session_start();
+include_once "../app/models/Faculty.php";
+include_once "../app/models/Student.php";
+include_once "../app/models/Room.php";
 
 if(!isset($_SESSION['admin']))
     header("Location:../admin-login.php");
+$studentObj = new Student();
+$studentsNumber = $studentObj->getAllStudents()->num_rows;
+$studentsData = $studentObj->getStudentsData()->fetch_all(MYSQLI_ASSOC);
+
+$roomObj = new Room();
+$roomNumber = $roomObj->getRoomsData()->num_rows;
+$occupiedRooms = $roomObj->getOccupiedRooms()->num_rows;
+
+$facultyObj = new Faculty();
+$facultyNumber = $facultyObj->getAllFaculties()->num_rows;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,25 +118,25 @@ if(!isset($_SESSION['admin']))
                     <span><i class="fa fa-user-plus"></i></span>
                     <h4>الطلاب المسجلين</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$studentsNumber?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-bed"></i></span>
                     <h4>مجموع الغرف</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$roomNumber?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-desktop"></i></span>
                     <h4>الغرف المحجوزة</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$occupiedRooms?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-graduation-cap"></i></span>
                     <h4>عدد الكليات المسجلة </h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$facultyNumber?></p>
                 </div>
             </div>
             <div class="box">
@@ -160,21 +173,20 @@ if(!isset($_SESSION['admin']))
                            <i class="fa fa-sort"></i>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="count"></td>
-                        <td>aa@gmial.com</td>
-                        <td>26/8/2023</td>
                     </tr>
-                    <tr>
-                        <td class="count"></td>
-                        <td>aa@gmial.com</td>
-                        <td>26/8/2023</td>
-                    </tr>
-                    <tr>
-                        <td class="count"></td>
-                        <td>aa@gmial.com</td>
-                        <td>26/8/2023</td>
-                    </tr>
+                        <?PHP 
+                        if($studentsData){
+                            foreach ($studentsData as $key => $student) {
+                                ?>
+                        <tr>
+                            <td><?php echo $student['Student_Id'] ?></td>
+                            <td><?php echo $student['Email'] ?></td>
+                            <td><?php echo $student['created_at'] ?></td>
+                        </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                 </table>
                 
             </div>

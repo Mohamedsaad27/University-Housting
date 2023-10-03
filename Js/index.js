@@ -41,7 +41,7 @@ $(document).ready(function () {
 $(document).ready(function () {                
     $('#UpdatePasswordFRM').submit(function (event) {
         event.preventDefault();
-        alert("test");
+        // alert("test");
         var formData = $(this).serialize();
         $.ajax({
             url: '../app/requests/UpdatePassword.php',

@@ -1,8 +1,8 @@
 <?php 
-// include_once __DIR__ .'\database\Connection';
-// include_once __DIR__ .'\database\Operations';
-include_once '../database/Connection.php';
-include_once '../database/Operations.php';
+include_once __DIR__ .'\..\database\Connection.php';
+include_once __DIR__ .'\..\database\Operations.php';
+// include_once '../database/Connection.php';
+// include_once '../database/Operations.php';
 class Admin extends connection implements crud {
     private $id;
     private $first_name;
@@ -219,6 +219,11 @@ class Admin extends connection implements crud {
         $this->phone = $phone;
 
         return $this;
+    }
+
+    public function getAllAdmins(){
+        $query = "SELECT * FROM `admins`";
+        return $this->runDQL($query);
     }
 
 }
