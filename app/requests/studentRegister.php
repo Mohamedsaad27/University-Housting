@@ -2,6 +2,8 @@
 session_start();
 include_once '../database/Validation.php';
 include_once '../models/Student.php';
+include_once '../models/Phone.php';
+include_once '../services/Mail.php';
 if($_POST){
     //first_name => required , string
     //last_name => required , string
@@ -91,7 +93,30 @@ if($_POST){
      // End Of Validation
 
     if(empty($_SESSION['registration'])){
-       echo "tmam";
+      $studentObject = new Student();
+      $phoneObject = new Phone();
+      $studentObject->setFirst_Name($_POST['first_name']);
+      $studentObject->setLast_Name($_POST['last_name']);
+      $studentObject->setEmail($_POST['email']);
+      $studentObject->setGender($_POST['gender']);
+      $studentObject->setPassword($_POST['password']);
+      $randomNumber = str_pad(mt_rand(0, 9999999999), 10, '0', STR_PAD_LEFT);
+      $studentObject->setStudentId($randomNumber);
+      $phoneObject->setPhone($_POST['phone']);
+       $insertStudent = $studentObject->create();
+       if($insertStudent){
+           //Send Verifcation Email
+           $subject = "Verification Code";
+           $body = "congratulations You Have been Registered In SVU Housing Your StudentID IS .$randomNumber. Use This Number To Login In Housing System";
+           $mail = new mail($_POST['email'],$subject,$body);
+           if($mail){
+            
+           }else{
+               $_SESSION['failed-email'] = "Please Try Again";
+           }
+       }else{
+           $_SESSION['Failed'] = "Something Went Error";
+       }
     }else{
 //        print_r($_SESSION['registration']);
         header('location:../../Registration.php');

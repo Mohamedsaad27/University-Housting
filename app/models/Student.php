@@ -8,14 +8,10 @@ class Student extends connection implements crud{
     private $StudentId;
     private $First_Name;
     private $Last_Name;
-
     private $Email;
     private $Gender	;
-    private $DateOfBirth;
     private $Password;
     private $FacultyId;
-    private $Level	;
-    private $Grade;
     private $created_at;
     public function Create(){
     $query = "INSERT INTO `students`(
@@ -60,25 +56,6 @@ VALUES(
         return $this;
     }
 
-    /**
-     * Get the value of Name
-     */ 
-    public function getName()
-    {
-        return $this->Name;
-    }
-
-    /**
-     * Set the value of Name
-     *
-     * @return  self
-     */ 
-    public function setName($Name)
-    {
-        $this->Name = $Name;
-
-        return $this;
-    }
 
     /**
      * Get the value of Email
@@ -120,25 +97,7 @@ VALUES(
         return $this;
     }
 
-    /**
-     * Get the value of DateOfBirth
-     */ 
-    public function getDateOfBirth()
-    {
-        return $this->DateOfBirth;
-    }
-
-    /**
-     * Set the value of DateOfBirth
-     *
-     * @return  self
-     */ 
-    public function setDateOfBirth($DateOfBirth)
-    {
-        $this->DateOfBirth = $DateOfBirth;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of Password
@@ -181,46 +140,6 @@ VALUES(
     }
 
     /**
-     * Get the value of Level
-     */ 
-    public function getLevel()
-    {
-        return $this->Level;
-    }
-
-    /**
-     * Set the value of Level
-     *
-     * @return  self
-     */ 
-    public function setLevel($Level)
-    {
-        $this->Level = $Level;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Grade
-     */ 
-    public function getGrade()
-    {
-        return $this->Grade;
-    }
-
-    /**
-     * Set the value of Grade
-     *
-     * @return  self
-     */ 
-    public function setGrade($Grade)
-    {
-        $this->Grade = $Grade;
-
-        return $this;
-    }
-
-    /**
      * Get the value of created_at
      */ 
     public function getCreated_at()
@@ -254,5 +173,65 @@ VALUES(
     public function getAllStudents(){
         $query = "SELECT * FROM `students`";
         return $this->runDQL($query);
+    }
+
+    /**
+     * Get the value of First_Name
+     */ 
+    public function getFirst_Name()
+    {
+        return $this->First_Name;
+    }
+
+    /**
+     * Set the value of First_Name
+     *
+     * @return  self
+     */ 
+    public function setFirst_Name($First_Name)
+    {
+        $this->First_Name = $First_Name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Last_Name
+     */ 
+    public function getLast_Name()
+    {
+        return $this->Last_Name;
+    }
+
+    /**
+     * Set the value of Last_Name
+     *
+     * @return  self
+     */ 
+    public function setLast_Name($Last_Name)
+    {
+        $this->Last_Name = $Last_Name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of StudentId
+     */ 
+    public function getStudentId()
+    {
+        return $this->StudentId;
+    }
+
+    /**
+     * Set the value of StudentId
+     *
+     * @return  self
+     */ 
+    public function setStudentId($StudentId)
+    {
+        $this->StudentId = $StudentId;
+
+        return $this;
     }
 }
