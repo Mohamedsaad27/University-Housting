@@ -1,3 +1,21 @@
+<?php
+
+include_once "app/models/Faculty.php";
+include_once "app/models/Student.php";
+include_once "app/models/Room.php";
+
+
+$studentObj = new Student();
+$studentsNumber = $studentObj->getAllStudents()->num_rows;
+
+$roomObj = new Room();
+$roomNumber = $roomObj->getRoomsData()->num_rows;
+$occupiedRooms = $roomObj->getOccupiedRooms()->num_rows;
+
+$facultyObj = new Faculty();
+$facultyNumber = $facultyObj->getAllFaculties()->num_rows;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,20 +37,20 @@
             </div>
             <!-- Sidebar Menu items -->
             <ul>
-                <li><a href="index-user.html" class="active">
+                <li><a href="index-user.php" class="active">
                         <span class="icon"><i class="fa fa-home"></i></span>
                         <span class="item">الرئيسية</span>
                     </a></li>
 
-                <li><a href="Room-details.html">
+                <li><a href="Room-details.php">
                         <span class="icon"><i class="fa fa-bed"></i></span>
                         <span class="item">تفاصيل غرفتك</span>
                     </a></li>
-                <li><a href="Book-room.html">
+                <li><a href="Book-room.php">
                         <span class="icon"><i class="fa fa-calendar"></i></span>
                         <span class="item">حجز الغرفة</span>
                     </a></li>
-                <li><a href="activity.html">
+                <li><a href="activity.php">
                         <span class="icon"><i class="fa fa-gears"></i></span>
                         <span class="item">انشطة تسجيل الدخول</span>
                     </a></li>
@@ -54,17 +72,17 @@
                                     <h3 id="user-name">Abdo Ahmed</h3>
                                 </div>
                                 <hr>
-                                <a href="profile.html" class="sub-menu-link">
+                                <a href="profile.php" class="sub-menu-link">
                                     <img src="images/profile.png">
                                     <p>ادارة الملف الشخصي</p>
                                     <span>&gt;</span>
                                 </a>
-                                <a href="settings.html" class="sub-menu-link">
+                                <a href="settings.php" class="sub-menu-link">
                                     <img src="images/setting.png">
                                     <p>اعدادت الحساب</p>
                                     <span>&gt;</span>
                                     <a>
-                                        <a href="help.html" target="_blank" class="sub-menu-link">
+                                        <a href="help.php" target="_blank" class="sub-menu-link">
                                             <img src="images/help.png">
                                             <p>المساعدة والدعم</p>
                                             <span>&gt;</span>
@@ -90,25 +108,25 @@
                     <span><i class="fa fa-user"></i></span>
                     <h4>الطلاب المسجلين</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$studentsNumber?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-bed"></i></span>
                     <h4>مجموع الغرف</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$roomNumber?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-desktop"></i></span>
                     <h4>الغرف المحجوزة</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$occupiedRooms?></p>
                 </div>
                 <div class="item">
                     <span><i class="fa fa-graduation-cap"></i></span>
                     <h4>المراحل الدراسية</h4>
                     <hr>
-                    <p>3</p>
+                    <p><?=$facultyNumber?></p>
                 </div>
             </div>
         </div>

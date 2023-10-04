@@ -9,13 +9,31 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login |User| University Housing</title>
+    <style>
+        .alert {
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        /* Styles for error alerts */
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        /* Style for the text inside the alert */
+        .alert-text {
+            color: #721c24;
+        }er-radius: 5px;
+        }
+    </style>
     <link rel="stylesheet" href="Css/login.css">
-    <link rel="stylesheet" href="Css/bootstrap.min.css" />
-    <link rel="stylesheet" href="Css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -30,22 +48,19 @@ session_start();
                     <?php
                     if (!empty($_SESSION['errors']['email'])) {
                         foreach ($_SESSION['errors']['email'] as $key => $value) {
-                            echo "<div class='alert alert-danger'>$value</div>";
+                            echo '<div class="alert alert-danger" role="alert"><p class="alert-text">' . $value . '</p></div>';
                         }
                     }
                     ?>
                     <input type="password" placeholder="Enter Your Password" name="password">
+
                     <?php
-                    if (!empty($_SESSION['errors']['password'])) {
-                        foreach ($_SESSION['errors']['password'] as $key => $value) {
-                            echo "<div class='alert alert-danger'>$value</div>";
-                        }
-                    }
                     if(!empty($_SESSION['errors']['dberror'])){
-                            echo "<div class='alert alert-danger'>".$_SESSION['errors']['dberror']."</div>";
-                    } 
+                        echo '<div class="alert alert-danger" role="alert"><p class="alert-text">' . $_SESSION['errors']['dberror'] . '</p></div>';
+                    }
                     ?>
                 </div>
+
                 <div class="checkbox">
                     <input type="checkbox" name="remeber" id="remeber" name="remember_me">
                     <label for="remeber">Remeber me</label>

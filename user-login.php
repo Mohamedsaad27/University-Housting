@@ -29,7 +29,7 @@
         </div>
         <div class="logo">
             <div class="back">
-                <a href="welcome-page.html"><i class="fa fa-arrow-circle-right"></i></a>
+                <a href="welcome-page.php"><i class="fa fa-arrow-circle-right"></i></a>
             </div>
             <div class="img"></div>
         </div>

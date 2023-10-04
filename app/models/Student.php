@@ -5,7 +5,10 @@ include_once __DIR__ .'\..\database\Operations.php';
 
 class Student extends connection implements crud{
     private $id;
-    private $Name;
+    private $StudentId;
+    private $First_Name;
+    private $Last_Name;
+
     private $Email;
     private $Gender	;
     private $DateOfBirth;
@@ -15,6 +18,20 @@ class Student extends connection implements crud{
     private $Grade;
     private $created_at;
     public function Create(){
+    $query = "INSERT INTO `students`(
+    `Student_Id`,
+    `First_Name`,
+    `Last_Name`,
+    `Email`,
+    `Gender`,
+    `Password`,
+)
+VALUES(
+    '$this->StudentId,'$this->First_Name','$this->Last_Name',
+       '$this->Email','$this->Gender','$this->Password'
+)";
+    return $this->runDML($query);
+
     }
     public function Read(){      
     }
