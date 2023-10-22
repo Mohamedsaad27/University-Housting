@@ -15,10 +15,10 @@ if($_POST){
     $FirstNameValidation = new Validation('first_name', $_POST['first_name']);
     $FirstNameRequiredResult = $FirstNameValidation->Required();
     if (empty($FirstNameRequiredResult)) {
-        $StringPattern= '/^[a-zA-Z0-9\s]+$/';
+        $StringPattern= '/^[a-zA-Z]+$/';
         $FirstNameIsStringResult = $FirstNameValidation->RegExp($StringPattern);
         if (!empty($FirstNameIsStringResult)) {
-            $_SESSION['registration']['first_name']['is_string'] = $FirstNameIsStringResult;
+            $_SESSION['registration']['first_name']['is_string'] = "Please Enter Valid Name ";
         }
     } else {
         $_SESSION['registration']['first_name']['required'] = $FirstNameRequiredResult;
@@ -30,43 +30,47 @@ if($_POST){
     $LastNameValidation = new Validation('last_name', $_POST['last_name']);
     $LastNameRequiredResult = $LastNameValidation->Required();
     if (empty($LastNameRequiredResult)) {
-        $StringPattern= '/^[a-zA-Z0-9\s]+$/';
+        $StringPattern= '/^[a-zA-Z]+$/';
         $LastNameIsStringResult = $LastNameValidation->RegExp($StringPattern);
         if (!empty($LastNameIsStringResult)) {
-            $_SESSION['registration']['last_name']['is_string'] = $LastNameIsStringResult;
+            $_SESSION['registration']['last_name']['is_string'] = "Please Enter Valid Name ";
         }
     } else {
         $_SESSION['registration']['last_name']['required'] = $LastNameRequiredResult;
     }
     // 3-Validation  On Email
     $emailValidation = new Validation('email', $_POST['email']);
+    $emailPattern = "/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/";
     $emailRequiredResult = $emailValidation->Required();
     if (empty($emailRequiredResult)) {
-        $emailPattern = "/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/";
         $emailRegExResult = $emailValidation->RegExp($emailPattern);
-        if (!empty($emailRegExResult)) {
-            $_SESSION['registration']['email']['regex'] = $emailRegExResult;
+        if (empty($emailRegExResult)) {
+          $emailUniqueResult = $emailValidation->Unique('students');
+          if(!empty($emailUniqueResult)){
+              $_SESSION['registration']['email']['unique'] = $emailUniqueResult;
+          }  
         }
     } else {
         $_SESSION['registration']['email']['required'] = $emailRequiredResult;
     }
 
     //4-Validation on phone
-    $phoneValidation = new Validation('phone', $_POST['phone']);
-    $phoneRequiredResult = $phoneValidation->Required();
-    $phonePattern = '/^01[1-268]\d{8}$/';
-    if (empty($phoneRequiredResult)) {
-        $phoneRegexResult = $phoneValidation->RegExp($phonePattern);
-        if (empty($phoneRegexResult)) {
-            $phoneUniqueResult = $phoneValidation->Unique('Admins');
-            if (empty($phoneUniqueResult)) {
-                $_SESSION['registration']['phone']['regex'] = $phoneRegexResult;
-            }
+$phoneValidation = new Validation('phone', $_POST['phone']);
+$phonePattern = '/^01[1-268]\d{8}$/';
+$phoneRequiredResult = $phoneValidation->Required();
+if (empty($phoneRequiredResult)) {
+    $phoneRegexResult = $phoneValidation->RegExp($phonePattern);
+    if (empty($phoneRegexResult)) {
+        $phoneUniqueResult = $phoneValidation->Unique('phones');
+        if (!empty($phoneUniqueResult)) {
+            $_SESSION['registration']['phone']['unique'] = $phoneUniqueResult;
         }
-    } else {
-        $_SESSION['registration']['phone']['required'] = $phoneRequiredResult;
     }
-    // 5-Validation In Password
+} else {
+    $_SESSION['registration']['phone']['required'] = $phoneRequiredResult;
+}
+
+  // 5-Validation In Password
     $passwordValidation = new Validation('password', $_POST['password']);
     $passwordRequiredResult = $passwordValidation->Required();
     if (empty($passwordRequiredResult)) {
@@ -91,7 +95,7 @@ if($_POST){
         $_SESSION['registration']['NewPasswordConfirm']['required'] = $confirmpasswordRequiredResult;
     }
      // End Of Validation
-
+    // If no Errors
     if(empty($_SESSION['registration'])){
       $studentObject = new Student();
       $phoneObject = new Phone();
@@ -100,6 +104,10 @@ if($_POST){
       $studentObject->setEmail($_POST['email']);
       $studentObject->setGender($_POST['gender']);
       $studentObject->setPassword($_POST['password']);
+      // Random Number For Code Verification
+      $code = rand(10000, 99999);
+      $studentObject->setCodeVerified($code);
+      //  Random Number For StudentId
       $randomNumber = str_pad(mt_rand(0, 9999999999), 10, '0', STR_PAD_LEFT);
       $studentObject->setStudentId($randomNumber);
       $phoneObject->setPhone($_POST['phone']);
@@ -107,10 +115,14 @@ if($_POST){
        if($insertStudent){
            //Send Verifcation Email
            $subject = "Verification Code";
-           $body = "congratulations You Have been Registered In SVU Housing Your StudentID IS .$randomNumber. Use This Number To Login In Housing System";
-           $mail = new mail($_POST['email'],$subject,$body);
-           if($mail){
-            
+           $body = "Congratulations You Have been Registered In SVU Housing Your StudentID IS .$randomNumber. 
+                 <br>To verify Your Account Use This Code $code";
+           $mail = new Mail($_POST['email'],$subject,$body);
+           $mailResult= $mail->send();
+           if($mailResult){
+               $_SESSION['user-email'] = $_POST['email'];
+               $_SESSION['Code-verification'] = $code;
+               header("location:../../verifyCode.php?page=register");die;
            }else{
                $_SESSION['failed-email'] = "Please Try Again";
            }

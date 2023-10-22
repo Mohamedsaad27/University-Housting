@@ -38,9 +38,10 @@ session_start();
     <div class="container">
         <div class="register-box">
             <h1>Create Account</h1>
+
             <form action="app/requests/studentRegister.php" method="post" class="form-style">
                 <div class="first">
-                    <input type="text" value="" placeholder="First Name" name="first_name" >
+                    <input type="text"  placeholder="First Name" name="first_name"  value="<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];} ?>" >
                     <?php
                     if(!empty($_SESSION['registration']['first_name'])){
                         foreach ($_SESSION['registration']['first_name'] as $key=>$error){

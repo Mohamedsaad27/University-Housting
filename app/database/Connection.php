@@ -11,13 +11,13 @@ class connection{
         $this->connection =  new mysqli($this->servername, $this->username, $this->password, $this->database);
     }
     // To run DML queries => create,update,delete,insert
-    public function runDML(string $query){
+    public function runDML(string $query) : bool
+    {
         $result = $this->connection->query($query);
         if($result){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
     // To run DQL queries => SELECT

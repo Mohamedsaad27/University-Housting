@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,17 +15,32 @@
     <div class="container">
         <div class="login-box">
             <h1>Sign in</h1>
-            <form action="" class="form-style">
+            <form action="app/requests/StudentLogin.php" class="form-style" method="post">
                 <div class="inputs">
-                    <input type="email" placeholder="Email Address">
-                    <input type="password" placeholder="Password">
+                    <input type="email" placeholder="Email Address " name="email">
+                    <?php
+                                        if (!empty($_SESSION['errors']['email'])) {
+                                            foreach ($_SESSION['errors']['email'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
+                    <input type="password" placeholder="Password" name="password">
+                    <?php
+                                        if (!empty($_SESSION['errors']['password'])) {
+                                            foreach ($_SESSION['errors']['password'] as $key => $value) {
+                                                echo "<div class='alert alert-danger'>$value</div>";
+                                            }
+                                        }
+                                        ?>
+
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" name="remeber" id="remeber">
+                    <input type="checkbox" name="remeber" id="remeber" name="remember_me">
                     <label for="remeber">Remeber me</label>
                 </div>
                 <div class="submit">
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" name="login">
                 </div>
             </form>
         </div>
@@ -37,3 +54,7 @@
 </body>
 
 </html>
+
+<?php 
+unset($_SESSION['errors']);
+?>

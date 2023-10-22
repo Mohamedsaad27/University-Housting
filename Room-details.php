@@ -19,11 +19,6 @@
             </div>
             <!-- Sidebar Menu items -->
             <ul>
-                <li><a href="index-user.php">
-                        <span class="icon"><i class="fa fa-home"></i></span>
-                        <span class="item">الرئيسية</span>
-                    </a></li>
-
                 <li><a href="Room-details.php" class="active">
                         <span class="icon"><i class="fa fa-bed"></i></span>
                         <span class="item">تفاصيل غرفتك</span>
@@ -31,10 +26,6 @@
                 <li><a href="Book-room.php">
                         <span class="icon"><i class="fa fa-calendar"></i></span>
                         <span class="item">حجز الغرفة</span>
-                    </a></li>
-                <li><a href="activity.php">
-                        <span class="icon"><i class="fa fa-gears"></i></span>
-                        <span class="item">انشطة تسجيل الدخول</span>
                     </a></li>
             </ul>
         </aside>
