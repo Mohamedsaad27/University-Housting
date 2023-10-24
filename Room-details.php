@@ -10,10 +10,10 @@ $result = $studentObject->getRoomDetails();
 $roomDetails = $result->fetch_object();
 
 $moreInforamtion = $studentObject->getMoreInformatio();
-$studentInforamtion = $moreInforamtion->fetch_object();
-echo "<pre>";
-print_r($studentInforamtion);
-echo "</pre>";
+$studentInforamtion = $moreInforamtion->fetch_all(MYSQLI_ASSOC);
+
+$addressObject = $studentObject->StudentAddress();
+$StudentAdress = $addressObject->fetch_object();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,42 +137,71 @@ echo "</pre>";
                     </tr>
                     <tr>
                         <td>رقم الغرفة</td>
-                        <td>2</td>
+                        <td><?= $roomDetails->Room_Id ?></td>
                         <td>الاسم بالكامل</td>
-                        <td>abdo ahmed</td>
+                        <td><?= $roomDetails->First_Name .' '. $roomDetails->Last_Name ?></td>
                         <td>البريد الالكتروني</td>
-                        <td>a@gmail.com</td>
+                        <td><?=$roomDetails->Email?></td>
                     </tr>
                     <tr>
                         <td>رقم الهاتف</td>
-                        <td>01017082519</td>
+                        <td>
+                            <?php
+                            foreach ($studentInforamtion as $key=>$student){
+                         echo ($student['Student_Phone_Relation']) == 'شخصي' ? $student['Phone'] : '';
+                            }
+                            ?>
+                        </td>
                         <td>الجنس</td>
-                        <td>ذكر</td>
+                        <td><?= ($roomDetails->Gender) == 'M' ? 'ذكر ' : ' انثي ' ?></td>
                         <td>المرحلة الدراسية</td>
-                        <td>هندسة حاسوب</td>
+                    <td><?php
+                        $x = $studentObject->StudentFacultyName();
+                        $studentFacultyName = $x->fetch_object();
+                        echo  $studentFacultyName->Name;
+                        ?></td>
                     </tr>
                     <tr>
                         <td>رقم الاتصال في حالة الطوارئ</td>
-                        <td>#########</td>
+                        <td>
+                            <?php
+                            foreach ($studentInforamtion as $key=>$student){
+                                echo ($student['Student_Phone_Relation']) == 'طوارئ' ? $student['Phone'] : '';
+                            }
+                            ?>
+                        </td>
                         <td>اسم ولي الامر</td>
-                        <td>ahmed</td>
+                        <td><?= $roomDetails->Last_Name ?> </td>
                         <td>علاقة ولي الامر</td>
                         <td>اب</td>
                     </tr>
                     <tr>
                         <td>رقم هاتف ولي الامر</td>
-                        <td colspan="5">$$$$$$$$</td>
-                        <!-- <td></td>
+                        <td colspan="5">
+                            <?php
+                            foreach ($studentInforamtion as $key=>$student){
+                                echo ($student['Student_Phone_Relation']) == 'اب' ? $student['Phone'] : '';
+                            }
+                            ?>
+                        </td>                        <!-- <td></td>
                     <td></td>
                     <td></td>
                     <td></td> -->
                     </tr>
                     <tr>
                         <td>العنوان الحالي</td>
-                        <td colspan="2">nagg hammadi ,qena</td>
+                        <td colspan="2">
+                            <?=
+                            $StudentAdress->Region .','. $StudentAdress->City
+                            ?>
+                        </td>
                         <!-- <td></td> -->
                         <td>العنوان الثابت</td>
-                        <td colspan="2">nagg hammadi ,qena ,233</td>
+                        <td colspan="2">
+                            <?=
+                            $StudentAdress->Region .','. $StudentAdress->City . ','. $StudentAdress->PostalCode
+                            ?>
+                        </td>
                         <!-- <td></td> -->
                     </tr>
                 </table>
