@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +22,6 @@
             </div>
             <!-- Sidebar Menu items -->
             <ul>
-                <li><a href="index-user.php">
-                        <span class="icon"><i class="fa fa-home"></i></span>
-                        <span class="item">الرئيسية</span>
-                    </a></li>
 
                 <li><a href="Room-details.php">
                         <span class="icon"><i class="fa fa-bed"></i></span>
@@ -31,10 +30,6 @@
                 <li><a href="Book-room.php">
                         <span class="icon"><i class="fa fa-calendar"></i></span>
                         <span class="item">حجز الغرفة</span>
-                    </a></li>
-                <li><a href="activity.php">
-                        <span class="icon"><i class="fa fa-gears"></i></span>
-                        <span class="item">انشطة تسجيل الدخول</span>
                     </a></li>
             </ul>
         </aside>
@@ -51,7 +46,7 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name"><?= $_SESSION['user']->First_Name .' '. $_SESSION['user']->Last_Name ?></h3>
                                 </div>
                                 <hr>
                                 <a href="profile.php" class="sub-menu-link">

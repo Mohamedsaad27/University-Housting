@@ -35,6 +35,8 @@ VALUES(
     }
     public function Read()
     {
+        $query = "SELECT * FROM `students` WHERE Email = '$this->Email'";
+        return $this->runDQL($query);
     }
     public function Update()
     {
@@ -297,4 +299,35 @@ VALUES(
        WHERE Email = '$this->Email' AND Password = '$this->Password'";
       return $this->runDQL($query);
     }
+    public function getRoomDetails(){
+        $query = "SELECT
+        rooms.ID AS RoomID,
+        students.ID AS StudentID,
+        booking.ID AS BookingID,
+        rooms.*,
+        students.*,
+        booking.*
+    FROM
+        booking
+    JOIN rooms ON rooms.ID = booking.RoomId
+    JOIN students ON students.ID = booking.StudentId
+WHERE students.Email = '$this->Email'
+";
+        return $this->runDQL($query);
+    }
+    public function getMoreInformatio(){
+     $query = "SELECT 
+	students.ID AS 'studentID',
+    students.* ,
+    faculties.ID AS 'FacultyId',
+    faculties.Name 
+    FROM 
+    students JOIN faculties ON students.FacultyId = faculties.ID
+    WHERE students.Email = '$this->Email'
+    ";
+
+     return $this->runDQL($query);
+    }
+
+
 }

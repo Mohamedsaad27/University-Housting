@@ -17,7 +17,9 @@ class Room extends connection implements crud {
         VALUES ('$this->Room_Id','$this->NumberOfBeds','$this->Price','$this->AvailabilityStatus','$this->FoodStatus')";
         return $this->runDML($query);
     }
-    public function Read(){   
+    public function Read(){
+        $query = "";
+        return $this->runDQL($query);
     }
     public function Update(){
     }
@@ -175,4 +177,5 @@ class Room extends connection implements crud {
         $query = "SELECT * FROM `rooms` where `AvailabilityStatus` = 'Occupied'";
         return $this->runDQL($query);
     }
+
 }

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +45,7 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name"><?= $_SESSION['user']->First_Name .' '.$_SESSION['user']->Last_Name ?></h3>
                                 </div>
                                 <hr>
                                 <a href="profile.php" class="sub-menu-link">
@@ -60,7 +63,7 @@
                                             <p>المساعدة والدعم</p>
                                             <span>&gt;</span>
                                         </a>
-                                        <a href="#" class="sub-menu-link">
+                                        <a href="app/requests/StudentLogout.php" class="sub-menu-link">
                                             <img src="images/logout.png ">
                                             <p>تسجيل الخروج</p>
                                             <span>&gt;</span>

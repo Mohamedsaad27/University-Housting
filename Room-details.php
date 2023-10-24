@@ -1,3 +1,20 @@
+<?php 
+
+session_start();
+include_once 'app/models/Room.php';
+include_once 'app/models/Student.php';
+$roomObject = new Room();
+$studentObject = new Student();
+$studentObject->setEmail($_SESSION['user']->Email);
+$result = $studentObject->getRoomDetails();
+$roomDetails = $result->fetch_object();
+
+$moreInforamtion = $studentObject->getMoreInformatio();
+$studentInforamtion = $moreInforamtion->fetch_object();
+echo "<pre>";
+print_r($studentInforamtion);
+echo "</pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +59,7 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="images/avatar.png">
-                                    <h3 id="user-name">Abdo Ahmed</h3>
+                                    <h3 id="user-name"><?= $_SESSION['user']->First_Name .' '.$_SESSION['user']->Last_Name ?></h3>
                                 </div>
                                 <hr>
                                 <a href="profile.php" class="sub-menu-link">
@@ -60,7 +77,7 @@
                                             <p>المساعدة والدعم</p>
                                             <span>&gt;</span>
                                         </a>
-                                        <a href="#" class="sub-menu-link">
+                                        <a href="app/requests/StudentLogout.php" class="sub-menu-link">
                                             <img src="images/logout.png ">
                                             <p>تسجيل الخروج</p>
                                             <span>&gt;</span>
@@ -83,7 +100,7 @@
                         <td colspan="2">
                             <div class="date-time">
                                 <p>تاريخ ووقت تسجيل الدخول</p>
-                                <p id="login-time">""</p>
+                                <p id="login-time"><?php echo date('H:i:s d-m-y ') ?> </p>
                             </div>
                         </td>
                         <td colspan="4" style="background-color: transparent; border: none;">
@@ -92,19 +109,20 @@
                     </tr>
                     <tr>
                         <td>رقم الغرفة</td>
-                        <td>200</td>
+                        <td><?= $roomDetails->Room_Id;?></td>
                         <td>تاريخ الحجز</td>
-                        <td>16-3-2023</td>
+                        <td><?= date('d-m-Y', strtotime($roomDetails->created_at)); ?></td>
+
                         <td>عدد الاشخاص في الغرفة</td>
-                        <td>2</td>
+                        <td><?= $roomDetails->NumberOfBeds;?></td>
                     </tr>
                     <tr>
                         <td>مدة السكن</td>
-                        <td>3 اشهر</td>
+                        <td><?= $roomDetails->duration;?> اشهر</td>
                         <td>حالة الطعام</td>
-                        <td>مطلوب</td>
+                        <td><?= ($roomDetails->FoodStatus) == 'Included' ? 'مطلوب ' : 'غير مطلوب ' ?></td>
                         <td>الرسوم في الشهر</td>
-                        <td>iQd75</td>
+                        <td><?= $roomDetails->Price;?></td>
                     </tr>
                     <tr>
                         <td colspan="6" style="font-size: 20px; ">اجمالي الرسوم التي سوف يدفعها( 3اشهر ) :
