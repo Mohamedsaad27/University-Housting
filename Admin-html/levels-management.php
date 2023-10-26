@@ -1,7 +1,7 @@
 <?php
+session_start();    
 include_once "../app/middleware/auth.php";
 include_once '../app/models/Faculty.php';
-session_start();
 
 if(!isset($_SESSION['admin']))
     header("Location:../admin-login.php");
