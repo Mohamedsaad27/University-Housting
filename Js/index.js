@@ -96,3 +96,23 @@ $(document).ready(function () {
         });
     });
 });
+
+document.getElementById("roomNumber").addEventListener("change", function () {
+    // Get the selected option
+    var selectedOption = this.value;
+    alert("test");
+
+    $.ajax({
+        url: '../app/requests/getRoom.php',
+        method: 'POST',
+        data: formData,
+        success: function (response) {      
+            response = JSON.parse(response);                
+            document.getElementById("NumberOfBeds").innerHTML = response.roomData['price'];
+        },
+        error: function (xhr, status, error) {                       
+            alert('Your form was not sent successfully.');
+            console.error(error);
+        }
+    });
+});

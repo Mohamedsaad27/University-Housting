@@ -1,5 +1,9 @@
 <?php
 session_start();
+include_once'app/models/Room.php';
+$room = new Room();
+$roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,47 +88,54 @@ session_start();
                     <div class="room-info">
                         <div class="info">
                             <h3>رقم الغرفة</h3>
-                            <select name="" id="" required>
+                            <select name="roomNumber" id="roomNumber" required>
                                 <option value="" disabled selected>اختر...</option>
+                                <?PHP 
+                                if($roomNumbers){
+                                    foreach ($roomNumbers as $key => $number) {
+                                        ?>
+                                        <option value="<?= $number['ID']?>" ><?=$number['Room_Id'] ?></option>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="info">
+                            <h3>تاريخ الحجز</h3>
+                            <input type="date" name = "startDate">
+                        </div>
+                        <div class="info">
+                            <h3>عدد الاشخاص في الغرفة</h3>
+                            <input type="text" name="NumberOfBeds" id="NumberOfBeds" placeholder="عدد الاشخاص في الغرفة" readonly>
+                        </div>
+                        <div class="info">
+                            <h3>المدة الاجمالية للسكن</h3>
+                            <select name="duration" id="" required>
+                                <option value="" selected disabled>اختر...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
-                        </div>
-                        <div class="info">
-                            <h3>تاريخ الحجز</h3>
-                            <input type="date">
-                        </div>
-                        <div class="info">
-                            <h3>عدد الاشخاص في الغرفة</h3>
-                            <input type="text" placeholder="عدد الاشخاص في الغرفة" readonly>
-                        </div>
-                        <div class="info">
-                            <h3>المدة الاجمالية للسكن</h3>
-                            <select name="" id="" required>
-                                <option value="" selected disabled>اختر...</option>
-                                <option value="">2</option>
-                                <option value="">2</option>
-                                <option value="">2</option>
+                                <option value="6">6</option>
                             </select>
                         </div>
                         <div class="info">
                             <h3>حالة الغذاء</h3>
-                            <input type="radio" name="demand" id="m"> 
+                            <input type="radio" name="FoodStatus" value="Included" id="m"> 
                             <label for="m">مطلوب (سوف يتم اضافة الف جنيه شهريا)</label>
                             <br>
-                            <input type="radio" name="demand" id="n" checked>
+                            <input type="radio" name="FoodStatus" value="Not Included" id="n" checked>
                             <label for="n">غير مطلوب</label>
                         </div>
                         <div class="info">
                             <h3>اجمالي الرسوم في الشهر</h3>
-                            <input type="text" placeholder="اجمالي الرسوم في الشهر" readonly>
+                            <input type="text" placeholder="اجمالي الرسوم في الشهر" readonly id="price">
                         </div>
                         <div class="info">
                             <h3>المجموع الكامل لمدة السكن المحددة</h3>
-                            <input type="text" class="dif-txt" placeholder="اكتب المجموع الكامل لمدة السكن المحددة">
+                            <input type="text" class="dif-txt" placeholder="اكتب المجموع الكامل لمدة السكن المحددة" id="totalPrice">
                         </div>
                     </div>
                     <h4>المعلومات الشخصية للطالب</h4>

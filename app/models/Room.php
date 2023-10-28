@@ -178,4 +178,14 @@ class Room extends connection implements crud {
         return $this->runDQL($query);
     }
 
+    public function getRoomNumbers() {
+        $query = "SELECT * FROM `rooms`";
+        return $this->runDQL($query);
+    }
+
+    public function getRoom(){
+        $query = "SELECT * FROM `rooms` WHERE `ID` = $this->id";
+        return $this->runDQL($query);
+    }
+
 }

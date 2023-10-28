@@ -11,9 +11,9 @@ $roomDetails = $result->fetch_object();
 
 $moreInforamtion = $studentObject->getMoreInformatio();
 $studentInforamtion = $moreInforamtion->fetch_object();
-echo "<pre>";
-print_r($studentInforamtion);
-echo "</pre>";
+// echo "<pre>";
+// print_r($studentInforamtion);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
