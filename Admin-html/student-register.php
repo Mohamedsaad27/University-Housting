@@ -1,6 +1,6 @@
 <?php 
-include_once "../app/middleware/auth.php";
 session_start();
+include_once "../app/middleware/auth.php";
 include_once "../app/models/Booking.php";
 
 if(!isset($_SESSION['admin']))

@@ -1,8 +1,7 @@
 <?php 
-include_once "../app/middleware/auth.php";
-
-include_once '../app/models/Student.php';
 session_start();
+include_once "../app/middleware/auth.php";
+include_once '../app/models/Student.php';
 
 if(!isset($_SESSION['admin']))
     header("Location:../admin-login.php");
@@ -164,8 +163,8 @@ $studentsData = $result->fetch_all(MYSQLI_ASSOC);
                         <tr>
                             <td><?php echo $student['ID'] ?></td>
                             <td><?php echo $student['Student_Id'] ?></td>
-                            <td><?php echo $student['Name'] ?></td>
-                            <td><?php echo   ($student['Gender'] ) == 'M' ? 'Male' : 'Female' ?></td>
+                            <td><?php echo $student['First_Name'] .' '. $student['Last_Name'] ?></td>
+                            <td><?php echo  ($student['Gender'] ) == 'M' ? 'Male' : 'Female' ?></td>
                             <td><?php echo $student['Phone'] ?></td>
                             <td><?php echo $student['Email'] ?></td>
                             <td><i class="fa fa-times-circle-o dlt"></i></td>

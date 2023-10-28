@@ -320,14 +320,30 @@ WHERE students.Email = '$this->Email'
 	students.ID AS 'studentID',
     students.* ,
     faculties.ID AS 'FacultyId',
-    faculties.Name 
+    faculties.Name, 
+    phones.ID as 'PhoneId',
+    phones.*
     FROM 
     students JOIN faculties ON students.FacultyId = faculties.ID
+    JOIN phones on phones.StudentId = students.ID
     WHERE students.Email = '$this->Email'
     ";
 
      return $this->runDQL($query);
     }
+public function StudentFacultyName(){
+        $query = "SELECT students.* , faculties.* 
+            FROM 
+    students JOIN faculties ON students.FacultyId = faculties.ID 
+    WHERE students.Email = '$this->Email'
+        ";
+        return $this->runDQL($query);
+}
 
-
+    public function StudentAddress(){
+        $query = "SELECT addresses.* , students.Student_Id
+FROM addresses JOIN students ON addresses.StudentId = students.ID
+WHERE students.Email = '$this->Email'";
+        return $this->runDQL($query);
+    }
 }
