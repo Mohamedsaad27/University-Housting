@@ -346,4 +346,9 @@ FROM addresses JOIN students ON addresses.StudentId = students.ID
 WHERE students.Email = '$this->Email'";
         return $this->runDQL($query);
     }
+
+    public function getStudentByEmail() {
+        $query = "SELECT * FROM students WHERE `Email` = '$this->Email'";
+        return $this->runDQL($query);
+    }
 }

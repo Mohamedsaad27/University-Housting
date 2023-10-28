@@ -84,7 +84,7 @@ $roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
                 <h1>حجز الغرفة</h1>
             </div>
             <div class="content">
-                <form action="">
+                <form id="newBookingFRM" action="" method="post">
                     <div class="room-info">
                         <div class="info">
                             <h3>رقم الغرفة</h3>
@@ -107,11 +107,11 @@ $roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
                         </div>
                         <div class="info">
                             <h3>عدد الاشخاص في الغرفة</h3>
-                            <input type="text" name="NumberOfBeds" id="NumberOfBeds" placeholder="عدد الاشخاص في الغرفة" readonly>
+                            <input type="text" name="NumberOfBeds" id="NumberOfBeds" placeholder="عدد الاشخاص في الغرفة" readonly value="">
                         </div>
                         <div class="info">
                             <h3>المدة الاجمالية للسكن</h3>
-                            <select name="duration" id="" required>
+                            <select name="duration" id="duration" required>
                                 <option value="" selected disabled>اختر...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -131,14 +131,14 @@ $roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
                         </div>
                         <div class="info">
                             <h3>اجمالي الرسوم في الشهر</h3>
-                            <input type="text" placeholder="اجمالي الرسوم في الشهر" readonly id="price">
+                            <input type="text" id="price" placeholder="اجمالي الرسوم في الشهر" value="" readonly>
                         </div>
                         <div class="info">
                             <h3>المجموع الكامل لمدة السكن المحددة</h3>
-                            <input type="text" class="dif-txt" placeholder="اكتب المجموع الكامل لمدة السكن المحددة" id="totalPrice">
+                            <input type="text" class="dif-txt" placeholder="اكتب المجموع الكامل لمدة السكن المحددة" id="totalPrice" readonly>
                         </div>
                     </div>
-                    <h4>المعلومات الشخصية للطالب</h4>
+                    <!-- <h4>المعلومات الشخصية للطالب</h4>
                     <div class="personal-info">
                         <div class="info">
                             <h3>رقم تسجيل الطالب</h3>
@@ -238,7 +238,7 @@ $roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
                             <h3>الرمز البريدي</h3>
                             <input type="text" class="dif-txt" placeholder="الرمز البريدي">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="buttons">
                         <input type="reset" value="الغاء" class="reset-btn">
@@ -252,6 +252,7 @@ $roomNumbers = $room->getRoomNumbers()->fetch_all(MYSQLI_ASSOC);
 
     </div>
 
+    <script src="Js/jquery.js"></script>
     <script src="Js/index.js"></script>
 </body>
 
