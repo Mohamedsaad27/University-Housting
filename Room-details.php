@@ -1,6 +1,6 @@
 <?php 
-
-session_start();
+// session_start();
+include_once "app/middleware/UserAuth.php";
 include_once 'app/models/Room.php';
 include_once 'app/models/Student.php';
 $roomObject = new Room();

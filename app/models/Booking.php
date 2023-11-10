@@ -43,7 +43,7 @@ class Booking extends connection implements crud {
     }
 
     public function getAllBookings() {
-        $query = "SELECT `booking`.`ID` , `students`.`Student_Id` , `students`.`Name` , `rooms`.`Room_Id` , `rooms`.`NumberOfBeds` , `booking`.`StartDate` , `phones`.`Phone` 
+        $query = "SELECT `booking`.`ID` , `students`.`Student_Id` , `students`.`First_Name` ,`students`.`Last_Name`, `rooms`.`Room_Id` , `rooms`.`NumberOfBeds` , `booking`.`StartDate` , `phones`.`Phone` 
         FROM `booking` INNER JOIN `students` ON `students`.`ID` = `booking`.`StudentId` INNER JOIN `rooms` ON `rooms`.`ID` = `booking`.`RoomId`
         INNER JOIN `phones` ON `phones`.`StudentId` = `booking`.`StudentId`";
         return $this->runDQL($query);

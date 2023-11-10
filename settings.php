@@ -1,6 +1,6 @@
-<?php
+<?php 
 session_start();
-?>
+include_once "app/middleware/UserAuth.php";?>
 <!DOCTYPE html>
 <html lang="en">
 

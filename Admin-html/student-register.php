@@ -168,7 +168,7 @@ $BookingData = $BookingtObj->getAllBookings()->fetch_all(MYSQLI_ASSOC);
                         <tr>
                             <td><?php echo $Booking['ID'] ?></td>
                             <td><?php echo $Booking['Student_Id'] ?></td>
-                            <td><?php echo $Booking['Name'] ?></td>
+                            <td><?php echo $Booking['First_Name'] . ' '. $Booking['Last_Name'] ?></td>
                             <td><?php echo $Booking['Room_Id'] ?></td>
                             <td><?php echo $Booking['NumberOfBeds'] ?></td>
                             <td><?php echo $Booking['StartDate'] ?></td>
