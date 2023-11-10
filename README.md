@@ -59,7 +59,7 @@ Communicate directly with landlords and property managers through the messaging 
 
 ## Contact Us
 
-If you encounter any issues, have questions, or need assistance, please reach out to our support team at support@universityhousing.com or visit our [Abouy Us page] for more options.
+If you encounter any issues, have questions, or need assistance, please reach out to our support team at Dev.mohamedsaadphp@gmail.com or visit our [Abouy Us page] for more options.
 
 Happy house hunting!
 
