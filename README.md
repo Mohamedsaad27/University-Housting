@@ -30,8 +30,6 @@ The University Housing Website is a centralized platform that connects students 
 
 - **Real-Time Updates**: Users can track the status of their applications in real-time through their personalized dashboards.
 
-- **Messaging System**: A built-in messaging system allows users to communicate with landlords and property managers directly through the platform.
-
 ## Getting Started
 
 ### Creating an Account
