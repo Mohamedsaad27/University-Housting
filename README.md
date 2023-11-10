@@ -13,8 +13,7 @@ Welcome to the University Housing Website! This platform is designed to streamli
    - [Profile Management](#profile-management)
    - [Application Status](#application-status)
    - [Messaging](#messaging)
-5. [FAQs](#faqs)
-6. [Contact Us](#contact-us)
+5. [Contact Us](#contact-us)
 
 ## Introduction
 
@@ -23,8 +22,6 @@ The University Housing Website is a centralized platform that connects students 
 ## Features
 
 - **User-Friendly Interface**: Our website features an intuitive design, making it easy for users to navigate and find the information they need.
-
-- **Comprehensive Search**: Users can search for housing based on various criteria such as location, rent, amenities, and more.
 
 - **Secure Application Process**: Applying for housing is a secure and straightforward process. Students can submit their applications online with ease.
 
