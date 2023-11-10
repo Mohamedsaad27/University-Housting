@@ -58,14 +58,11 @@ Track the status of your housing applications in real-time. Receive notification
 
 Communicate directly with landlords and property managers through the messaging system. This feature allows for efficient and secure communication regarding housing details.
 
-## FAQs
 
-For answers to common questions, please refer to our [FAQs section](FAQs.md).
 
 ## Contact Us
 
-If you encounter any issues, have questions, or need assistance, please reach out to our support team at support@universityhousing.com or visit our [Contact Us page](contact.md) for more options.
+If you encounter any issues, have questions, or need assistance, please reach out to our support team at support@universityhousing.com or visit our [Abouy Us page] for more options.
 
 Happy house hunting!
 
-[University Housing Website](https://www.universityhousing.com)
