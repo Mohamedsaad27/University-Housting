@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "app/middleware/auth.php";
+include_once "app/middleware/UserAuth.php";
 if (empty($_SESSION['user-email'])) {
   header('location:user-login.php');
   die;

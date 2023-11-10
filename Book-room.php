@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 include_once "app/middleware/UserAuth.php";
 include_once'app/models/Room.php';
 $room = new Room();
